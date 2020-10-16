@@ -1,0 +1,78 @@
+#include<stdio.h>
+
+void push(int x);
+int pop();
+void dis();
+top = -1;
+int st[100];
+
+ void main()
+ {
+ int n,x;
+ printf("Enter 1:push 2:pop 3:display and -1 to exit \n");
+ scanf("%d",&n);
+while(n!=-1)
+ {
+    if(n==1)
+    {
+        printf("Enter the element to push \n");
+        scanf("%d",&x);
+        push(x);
+    }
+    if(n==2)
+    {
+         x=pop();
+         printf("popped element %d \n", x);
+
+    }
+    if(n==3)
+    {
+       dis();
+    }
+     printf("Enter 1:push 2:pop 3:display and -1 to exit \n");
+     scanf("%d",&n);
+
+ }
+
+ return ;
+ }
+
+ void push(int x )
+ {
+     if(top==99)
+        printf("Full stack \n");
+     else
+     {
+        st[++top]=x;
+     }
+ }
+ int pop()
+ {
+     if(top==-1)
+        printf("Empty stack \n");
+     else
+     {
+         return st[top--];
+     }
+ }
+
+ void dis()
+ {
+
+     int temp=top;
+
+     printf("The stack elements are : \n");
+
+     if(temp==-1)
+     {
+         printf("Empty stack \n");
+         return ;
+     }
+
+     while(temp>-1)
+     {
+         printf("%d",st[temp]);
+         temp--;
+     }
+     printf("\n");
+ }
