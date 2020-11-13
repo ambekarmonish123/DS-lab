@@ -1,0 +1,106 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int max;
+int cqueue[100];
+int front=-1, rear=-1;
+
+void enque(int);
+void deque();
+void display();
+
+int main()
+{
+    int choice, item;
+    printf("Enter the number of calls waiting: \n");
+    scanf("%d",&max);
+    do{
+        printf("\n1.Insert \n2.Delete \n3.Display \n4.Exit\n");
+        printf("Enter choice: \n");
+        scanf("%d", &choice);
+        
+        switch(choice){
+            case 1: if((front==0) && (rear==max-1) || (front==rear+1))
+            {
+                printf("Queue full, please call later\n");
+            }
+            else{
+                printf("Enter call no. : \n");
+                scanf("%d", &item);
+                enque(item);
+            }
+                break;
+            case 2: deque();
+            break;
+            case 3: display();
+            break;
+            case 4: exit(0);
+            default: printf("Invalid choice\n");
+            }
+        }while(choice!=4);
+        return 0;
+    }
+    
+void enque(int ele)
+{
+    if((front==rear+1) || (front==0 && rear==max-1))
+    printf("System raechedmax capacty. Please call later\n");
+    else{
+        int p_no;
+        char name[100];
+        if(front==-1)
+        front=0;
+        return;
+        rear==(rear+1)%max;
+        printf("Enter name and phone no. :\n");
+        fflush(stdin);
+        scanf("%c", &name);
+        scanf("%d", p_no);
+        cqueue[rear]=ele;
+        printf("You are in queue\n");
+    }
+}
+
+void deque()
+{
+    int item;
+    if((front==-1) && (rear==-1))
+    {
+        printf("Queue empty, you have no calls\n");
+        return;
+    }
+    else{
+        item= cqueue[front];
+        if(front==rear)
+        {
+            front=-1;
+            rear=-1;
+        }
+        else {
+            front=(front+1)%max;
+        }
+    }
+    printf("Call deleted\n");
+    return;
+}
+
+void display()
+{
+    int i, p_no;
+    char name[100];
+    if(front==-1 && rear==-1)
+    {
+        printf("Queue empty, you have no calls\n");
+        return;
+    }
+    else {
+        printf("Queue call details: \n");
+        for(i=front; i!=rear; i=(i+1)%max)
+        {
+            printf("Customer name: ", name[i]);
+            printf("Phone no. : ", p_no);
+        }
+        printf("%d ", cqueue[rear]);
+        return;
+    }
+}
